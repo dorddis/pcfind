@@ -1,0 +1,24 @@
+# pcfind config. Location:
+#   Windows:      %APPDATA%\pcfind\config.toml
+#   Linux/macOS:  $XDG_CONFIG_HOME/pcfind/config.toml  (default ~/.config/pcfind/config.toml)
+#   Override:     PCFIND_CONFIG=/path/to/config.toml, or --config on the command line.
+# Every key is optional. Paths may use ~ and environment variables.
+
+# Default search roots when --root is not given. Without this, the current directory.
+roots = ["~/code", "~/notes"]
+
+# Extra directory names (or globs) to skip, on top of the built-in list. Use `pcfind doctor`
+# to find the directories that dominate your search time.
+deadzones = [
+    ".devcache",         # relocated npm/pip/uv package caches
+    "platform-base",     # cloned third-party reference repos
+    "*-wt-*",            # sibling worktree checkouts named repo-wt-<branch>
+]
+
+# `name` hides Everything hits under these directory names (a second, stale copy of live files).
+# The hidden count is always printed; --all shows them.
+stale_copy_dirs = ["projects-backup", ".archive"]
+
+# Pin the binaries instead of discovering them.
+# rg = "C:/tools/rg.exe"
+# es = "C:/Program Files/Everything/es.exe"

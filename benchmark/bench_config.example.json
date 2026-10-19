@@ -1,0 +1,43 @@
+{
+  "_comment": "Copy to bench_config.json and edit. Paths may use ~. A plant recipe whose plant_dirs key is missing is skipped. must_be_ignored_in names the git repo that must gitignore the directory; plant.py refuses otherwise.",
+  "scopes": {
+    "repo": "~/code/notes-repo",
+    "code": "~/code",
+    "tool_config": "~/.mytool"
+  },
+  "plant_dirs": {
+    "gitignored": {"path": "~/code/notes-repo/.build/work/ab", "must_be_ignored_in": "~/code/notes-repo"},
+    "hidden": {"path": "~/.mytool/.cache/ab/.hidden", "must_be_ignored_in": "~/.mytool"},
+    "aliased": {"path": "~/.mytool/cache/ab", "must_be_ignored_in": "~/.mytool",
+                "aliases": ["~/.mytool-second-login/cache/ab"]},
+    "no_repo": {"path": "~/code/_scratch/ab"},
+    "outside_a": {"path": "~/AppData/Local/ab-plants"},
+    "outside_b": {"path": "~/Downloads/ab-plants"},
+    "backup_mirror": {"path": "~/backup/code/notes-repo/.build/work/ab"}
+  },
+  "dangling_link": "~/.mytool/debug/latest",
+  "duplicate_dirs": ["worktrees", "_worktrees", ".worktrees", "_backups", "backup"],
+  "live_dirs": ["~/.claude/projects"],
+  "transcripts_glob": ["~/.claude/projects/*/*/subagents/**/agent-*.jsonl"],
+  "real_cases": [
+    {
+      "id": "R01",
+      "tags": ["small-repo", "exact-literal", "warm"],
+      "question": "Find every place parse_config is referenced under {root}.",
+      "root": "~/code/tools/cli",
+      "regex": "parse_config",
+      "kind": "lines",
+      "skip_dirs": []
+    },
+    {
+      "id": "R06",
+      "tags": ["large-enumeration", "count", "timeout-pressure"],
+      "question": "Under {root}, excluding installed dependencies (node_modules and Python virtualenvs) and git worktree checkouts, how many lines contain the word TODO in any case, and which files contain it? List every file.",
+      "root": "~/code/big-super-repo",
+      "regex": "(?i)\\btodo\\b",
+      "kind": "files",
+      "count_lines": true,
+      "skip_dirs": ["node_modules", ".venv", "venv", "site-packages", "__pycache__", "worktrees"]
+    }
+  ]
+}
